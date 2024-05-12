@@ -32,16 +32,17 @@ public class ClothingItem {
         this.price = price;
     }
 
-    public char getSize() {
-        return size;
-    }
 
-    public void ponSize(char size){
+    public void setSize(char size){
         if(size == 'S'|| size == 'M' || size == 'L') {
             this.size = size;
         }else{
             System.out.println("Tamaño inválido, no se ha modificado");
         }
+    }
+
+    public char getSize(){
+        return size;
     }
 
     @Override

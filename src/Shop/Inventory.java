@@ -1,17 +1,16 @@
 package Shop;
 
 public class Inventory {
-    private static final int MAX_SIZE = 10;
+    private static int MAX_SIZE = 10;
 
     private ClothingItem[] items;
 
     private int itemLength;
-
-    public Inventory(int MAX_SIZE) {
+    public Inventory(int size) {
+        MAX_SIZE = size;
         this.items = new ClothingItem[MAX_SIZE];
         this.itemLength = 0;
     }
-
     public int getItemCount() {
         return itemLength;
     }
@@ -27,7 +26,7 @@ public class Inventory {
 
     public int checkStock(String name, char size){
         int count = 0;
-        for(int i = 0;i<itemLength;i++) {
+        for(int i = 0; i< itemLength; i++) {
             if(items[i].getName().equals(name) && items[i].getSize() == size){
                 count++;
             }
@@ -36,12 +35,12 @@ public class Inventory {
     }
 
     public void removeItem(String name, char size){
-        for(int i = 0;i<itemLength;i++){
+        for(int i = 0; i< itemLength; i++){
             if(items[i].getName().equals(name) && items[i].getSize() == size){
-                for(int j = i;j<itemLength-1;j++){
+                for(int j = i; j< itemLength -1; j++){
                     items[j] = items[j+1];
                 }
-                items[itemLength-1] = null;
+                items[itemLength -1] = null;
                 itemLength--;
                 System.out.println("Prenda borrada");
                 return;
@@ -52,7 +51,7 @@ public class Inventory {
 
 
     public ClothingItem extractItem(String name, char size){
-        for(int i = 0;i<itemLength;i++){
+        for(int i = 0; i< itemLength; i++){
             if(items[i].getName().equals(name) && items[i].getSize() == size){
                 ClothingItem extractedItem = items[i];
                 removeItem(name,size);
@@ -68,11 +67,35 @@ public class Inventory {
         inventoryString.append("Inventario: => ").append("itemLength=").append(itemLength).append(", MAX_SIZE=").append(MAX_SIZE).append("\n");
         inventoryString.append("Nombre").append("\t\t").append("Precio").append("\t\t   ").append("Talla").append("\n");
         inventoryString.append("-------------------------------------\n");
-        for(int i = 0;i<itemLength;i++){
+        //$-20s%-20.2f%-20c%n
+        for(int i = 0; i< itemLength; i++){
             inventoryString.append(items[i].toString()).append("\n");
         }
         return inventoryString.toString();
     }
+
+    public void setItems(ClothingItem[] items) {
+        this.items = items;
+    }
+
+    public int getItemLength() {
+        return itemLength;
+    }
+
+    public void setItemLength(int itemLength) {
+        this.itemLength = itemLength;
+    }
+
+    public ClothingItem[] getItems() {
+        return items;
+    }
+    public int getMAX_SIZE(){
+        return MAX_SIZE;
+    }
+    public void setMAX_SIZE(int MAX_SIZE){
+        this.MAX_SIZE = MAX_SIZE;
+    }
+
 }
 
 
