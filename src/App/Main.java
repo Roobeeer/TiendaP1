@@ -67,10 +67,27 @@ public class Main {
         System.out.println("Introduzca el nombre de la prenda");
         String name = tec.nextLine();
         System.out.println("Introduce el precio de la prenda");
-        int precio = tec.nextInt();
+        double precio = 0;
+        if(tec.hasNextDouble()){
+            precio = tec.nextDouble();
+        }else{
+            do{
+                System.out.println("Error, introduce un número decimal");
+             tec.nextLine();
+                tec.hasNextDouble();
+
+            }while(!tec.hasNextDouble());
+        }
         tec.nextLine();
         System.out.println("Introduzca la talla de la prenda('S' || 'M' || 'L'): ");
         char size = tec.nextLine().toUpperCase().charAt(0);
+        while(size != 'S' && size !='M' && size!= 'L' ){
+            System.out.println("Error, introduce una talla válida");
+            size = tec.nextLine().toUpperCase().charAt(0);
+        }
+
+
+
         ClothingItem item1 = new ClothingItem(name, precio, size);
         inventory.addItem(item1);
         System.out.println("¡ITEM AÑADIDO AL INVENTARIO!");
@@ -88,7 +105,17 @@ public class Main {
         System.out.println("Talla (S/M/L):");
         char talla = tec.nextLine().toUpperCase().charAt(0);
         System.out.println("Precio: ");
-        int precio = tec.nextInt();
+        double precio = 0;
+        if(tec.hasNextDouble()){
+            precio = tec.nextDouble();
+        }else{
+            do{
+                System.out.println("Error, introduce un número decimal");
+                tec.nextLine();
+                tec.hasNextDouble();
+
+            }while(!tec.hasNextDouble());
+        }
         ClothingItem item1 = new ClothingItem(name, precio, talla);
         if (inventory.checkStock(name, talla) == 0) {
             System.out.println("Error, la prenda introducida no se encuentra en el inventario");
